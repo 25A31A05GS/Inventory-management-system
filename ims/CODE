@@ -1,0 +1,79 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+struct Product {
+    string name;
+    int price;
+    int quantity;
+};
+
+vector<Product> inventory;
+
+void addProduct() {
+    Product p;
+    cout << "Enter product name: ";
+    cin >> p.name;
+    cout << "Enter price: ";
+    cin >> p.price;
+    cout << "Enter quantity: ";
+    cin >> p.quantity;
+
+    inventory.push_back(p);
+    cout << "Product added!\n";
+}
+
+void viewProducts() {
+    if (inventory.empty()) {
+        cout << "No products available.\n";
+        return;
+    }
+
+    for (int i = 0; i < inventory.size(); i++) {
+        cout << i+1 << ". " << inventory[i].name
+             << " | Price: " << inventory[i].price
+             << " | Quantity: " << inventory[i].quantity << endl;
+    }
+}
+
+void sellProduct() {
+    string name;
+    int qty;
+    cout << "Enter product name to sell: ";
+    cin >> name;
+    cout << "Enter quantity: ";
+    cin >> qty;
+
+    for (auto &p : inventory) {
+        if (p.name == name) {
+            if (p.quantity >= qty) {
+                p.quantity -= qty;
+                cout << "Sold successfully!\n";
+            } else {
+                cout << "Not enough stock!\n";
+            }
+            return;
+        }
+    }
+    cout << "Product not found!\n";
+}
+
+int main() {
+    int choice;
+
+    do {
+        cout << "\n1. Add Product\n2. View Products\n3. Sell Product\n4. Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        switch(choice) {
+            case 1: addProduct(); break;
+            case 2: viewProducts(); break;
+            case 3: sellProduct(); break;
+            case 4: cout << "Exiting...\n"; break;
+            default: cout << "Invalid choice!\n";
+        }
+    } while(choice != 4);
+
+    return 0;
+}
