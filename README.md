@@ -101,5 +101,6 @@ Works only in console (no graphical interface)
 
 
 **FLOWCHART**
+<img width="1122" height="1402" alt="Image" src="https://github.com/user-attachments/assets/e6e396c4-a285-4f51-84da-54903ad4677a" />
 
 
